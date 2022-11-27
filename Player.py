@@ -1,32 +1,37 @@
-
 import pyxel
+import Bullet
 
 
 class Player:
 
-    def __init__(self, x: int, y: int):
-        pyxel.init(120, 160)
+    def __init__(self, x: float, y: float, radius: float, color: int):
         self.x = x
         self.y = y
-        pyxel.run(self.update, self.draw)
+        self.radius = radius
+        self.color = color
 
     def move(self):
-        if self.x + 10 < 120 and pyxel.btn(pyxel.KEY_RIGHT):
+        if pyxel.btn(pyxel.KEY_RIGHT) and self.x + self.radius < 120:
             self.x += 1
-        elif pyxel.btn(pyxel.KEY_LEFT) and self.x - 10 > 0:
+        if pyxel.btn(pyxel.KEY_LEFT) and self.x - self.radius > 0:
             self.x -= 1
-        elif pyxel.btn(pyxel.KEY_UP) and self.y - 10 > 0:
+        if pyxel.btn(pyxel.KEY_UP) and self.y - self.radius > 0:
             self.y -= 1
-        elif pyxel.btn(pyxel.KEY_DOWN) and self.y + 10 < 160:
+        if pyxel.btn(pyxel.KEY_DOWN) and self.y + self.radius < 160:
             self.y += 1
+        if pyxel.btn(pyxel.KEY_SPACE):
+            return self.shoot(), False
 
+        return None, False
 
     def draw(self):
-        pyxel.cls(12)
-        pyxel.circ(50, 80, 10, 6)
+        pyxel.circ(self.x, self.y, self.radius, self.color)
 
     def update(self):
-        if pyxel.btnp(pyxel.KEY_Q):
-            pyxel.quit()
-        else:
-            self.move()
+        return self.move()
+
+    def shoot(self):
+        x_pos = self.x - self.radius/9
+        y_pos = self.y + self.radius/4
+
+        return Bullet.Bullet(x_pos, y_pos, 2)

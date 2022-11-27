@@ -1,9 +1,7 @@
-
 from App import App
 from Player import Player
 
-#App()
+app = App()
+app.add_object(Player(60, 120, 5, 5))
 
-x = Player(10, 10)
-while True:
-    x.update()
+app.run()
