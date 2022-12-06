@@ -19,10 +19,10 @@ class Player:
             self.y -= 1
         if pyxel.btn(pyxel.KEY_DOWN) and self.y + self.radius < 160:
             self.y += 1
-        if pyxel.btn(pyxel.KEY_SPACE):
-            return self.shoot(), False
+        #if pyxel.btn(pyxel.KEY_SPACE):
+        return self.shoot(), False
 
-        return None, False
+        #return None, False
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, self.color)
@@ -31,7 +31,8 @@ class Player:
         return self.move()
 
     def shoot(self):
-        x_pos = self.x - self.radius/9
+
+        x_pos = self.x - self.radius
         y_pos = self.y + self.radius/4
 
-        return Bullet.Bullet(x_pos, y_pos, 2)
+        return Bullet.Bullet(x_pos, y_pos, 4, "up")
