@@ -64,4 +64,4 @@ class RegularEnemy:
         x_pos = self.x + (self.h + self.w) / 6
         y_pos = self.y - (self.h + self.w) / 72
 
-        return Bullet.BulletEnemy(x_pos, y_pos)
+        return Bullet.Bullet(x_pos, y_pos, 4, "down")
