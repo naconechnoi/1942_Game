@@ -1,4 +1,6 @@
 import pyxel
+import Bullet
+
 
 enemy_width = 6
 enemy_height = 6
@@ -33,6 +35,9 @@ class RegularEnemy:
 
             self.y += enemy_speed
 
+            if self.y % 10 == 0:
+                return self.shoot(), False
+
         if self.counter_y > 80:
             if (pyxel.frame_count + self.timer_offset) % 60 < 40:
                 self.x += enemy_speed
@@ -54,3 +59,9 @@ class RegularEnemy:
 
     def update(self):
         return self.move()
+
+    def shoot(self):
+        x_pos = self.x + (self.h + self.w) / 6
+        y_pos = self.y - (self.h + self.w) / 72
+
+        return Bullet.BulletEnemy(x_pos, y_pos)
