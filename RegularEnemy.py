@@ -2,55 +2,41 @@ import pyxel
 import Bullet
 
 
-enemy_width = 6
-enemy_height = 6
-enemy_speed = 1
-enemies = []
-
+RegularEnemyWidth = 6
+RegularEnemyHeight = 6
+RegularEnemySpeed = 1
+RegularEnemies = []
+color = 1
 
 class RegularEnemy:
 
-    def __init__(self, x: int = 50, y: int = 2, color: int = 1):
+    def __init__(self, x, y, middl):
         self.x = x
         self.y = y
-        self.w = enemy_width
-        self.h = enemy_height
+        self.w = RegularEnemyWidth
+        self.h = RegularEnemyHeight
         self.color = color
-        self.timer_offset = pyxel.rndi(0, 59)
         self.is_alive = True
-        enemies.append(self)
-        self.counter_y = 0
+        self.counter_y = middl
 
     def move(self):
 
         if self.counter_y <= 80:
-            if (pyxel.frame_count + self.timer_offset) % 60 < 40:
-                self.x += enemy_speed
-
-            else:
-                self.x -= enemy_speed
-
             if self.y > pyxel.height - 1:
                 self.is_alive = False
 
-            self.y += enemy_speed
+            self.y += RegularEnemySpeed
 
             if self.y % 10 == 0:
                 return self.shoot(), False
 
         if self.counter_y > 80:
-            if (pyxel.frame_count + self.timer_offset) % 60 < 40:
-                self.x += enemy_speed
-
-            else:
-                self.x -= enemy_speed
-
             if self.y > pyxel.height - 1:
                 self.is_alive = False
 
-            self.y -= enemy_speed
-
-        self.counter_y += enemy_speed
+            self.y -= RegularEnemySpeed
+            self.color = 0
+        self.counter_y += RegularEnemySpeed
 
         return None, False
 
