@@ -19,7 +19,7 @@ class RegularEnemy:
         self.is_alive = True
         self.counter_y = middl
 
-    def move(self):
+    def update(self, boomerang):
 
         if self.counter_y <= 80:
             if self.y > pyxel.height - 1:
@@ -28,7 +28,7 @@ class RegularEnemy:
             self.y += RegularEnemySpeed
 
             if self.y % 10 == 0:
-                return self.shoot(), False
+                boomerang.add_object(self.shoot())
 
         if self.counter_y > 80:
             if self.y > pyxel.height - 1:
@@ -38,13 +38,10 @@ class RegularEnemy:
             self.color = 0
         self.counter_y += RegularEnemySpeed
 
-        return None, False
 
     def draw(self):
         pyxel.rect(self.x, self.y, self.w, self.h, self.color)
 
-    def update(self):
-        return self.move()
 
     def shoot(self):
         x_pos = self.x + (self.h + self.w) / 6

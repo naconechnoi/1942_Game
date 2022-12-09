@@ -19,7 +19,7 @@ class RedEnemy:
        self.counter_y = 0
        self.t = 0.1
 
-    def move(self):
+    def update(self, boomerang):
 
             if self.counter_y <= 80:
                 if self.y > pyxel.height - 1:
@@ -34,10 +34,5 @@ class RedEnemy:
                 self.y += RedEnemySpeed
             self.counter_y += RedEnemySpeed
 
-            return None, False
-
     def draw(self):
         pyxel.rect(self.x, self.y, self.w, self.h, self.color)
-
-    def update(self):
-        return self.move()

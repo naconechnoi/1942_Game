@@ -1,5 +1,5 @@
 import pyxel
-
+from Boomerang import Boomerang
 
 class App:
 
@@ -26,13 +26,20 @@ class App:
             pyxel.quit()
         else:
             for obj in self.objects:
-                res, to_del = obj.update()
+                boomerang = Boomerang()
+                print(obj)
+                obj.update(boomerang)
 
-                if res is not None:
-                    self.objects.append(res)
+                if not boomerang.is_add_list_empty():
+                    for element in boomerang.get_add_list():
+                        self.add_object(element)
 
-                if to_del is not None and to_del:
-                    self.objects.remove(obj)
+                if not boomerang.is_delete_list_empty():
+                    for element in boomerang.get_delete_list():
+                        self.remove_object(element)
+
+    def remove_object(self, obj):
+        self.objects.remove(obj)
 
     def add_object(self, obj):
         self.objects.append(obj)

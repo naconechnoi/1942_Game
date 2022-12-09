@@ -11,22 +11,17 @@ class Bullet:
         self.height = 2
         self.width = 1
 
-    def move(self):
+    def update(self, boomerang):
         if self.rotation == "up":
             if self.y - self.height > 0:
                 self.y -= self.speed
             else:
-                return None, True
+                boomerang.remove_object(self)
         elif self.rotation == "down":
             if self.y - self.height > 0:
                 self.y += self.speed
             else:
-                return None, True
-
-        return None, False
+                boomerang.remove_object(self)
 
     def draw(self):
         pyxel.rect(self.x, self.y, self.height, self.width, 2)
-
-    def update(self):
-        return self.move()

@@ -11,17 +11,15 @@ class SuperBombardier:
         self.radius = 3
         self.is_alive = True
 
-    def move(self):
+    def update(self, boomerang):
 
         self.y -= self.bombardier_speed
 
-        return self.shoot(), False
+        boomerang.add_object(self.shoot())
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, 10)
 
-    def update(self):
-        return self.move()
 
     def shoot(self):
 

@@ -11,7 +11,7 @@ class Player:
         self.color = color
         self.current_posY = 120
 
-    def move(self):
+    def update(self, boomerang):
         if pyxel.btn(pyxel.KEY_RIGHT) and self.x + self.radius < 120:
             self.x += 1
         if pyxel.btn(pyxel.KEY_LEFT) and self.x - self.radius > 0:
@@ -23,15 +23,12 @@ class Player:
         #if pyxel.btn(pyxel.KEY_SPACE):
         self.current_posY = self.y
        # print(self.current_posY)
-        return self.shoot(), False
+        boomerang.add_object(self.shoot())
 
         #return None, False
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, self.color)
-
-    def update(self):
-        return self.move()
 
     def shoot(self):
 

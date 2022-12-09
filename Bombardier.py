@@ -1,6 +1,7 @@
 import pyxel
+import math
 import Bullet
-from Player import Player
+
 
 class Bombardier:
 
@@ -12,8 +13,9 @@ class Bombardier:
         self.is_alive = True
         self.position_y = 0
         self.obj = obj
+        self.t = 0.1
 
-    def move(self):
+    def update(self, boomerang):
         if self.obj.current_posY < 100:
             if self.position_y <= 70:
 
@@ -22,31 +24,21 @@ class Bombardier:
                 if self.y > pyxel.height - 1:
                     self.is_alive = False
             else:
-
-                if 70 < self.position_y <= 100:
-                    self.x += self.bombardier_speed
-                elif 100 < self.position_y <= 130:
-                    self.y -= self.bombardier_speed
-                elif 130 < self.position_y <= 160:
-                    self.x -= self.bombardier_speed
-                else:
-                    self.y -= self.bombardier_speed
-                    self.x += self.bombardier_speed / 2
+                res_x = 2 * math.sin(self.t)
+                res_y = 2 * math.cos(self.t)
+                self.t += 0.1
+                self.x += res_x
+                self.y += res_y
 
                 if self.y > pyxel.height - 1:
                     self.is_alive = False
 
             self.position_y += self.bombardier_speed
 
-            return self.shoot(), False
-        else:
-            return None, False
+            boomerang.add_object(self.shoot())
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, 9)
-
-    def update(self):
-        return self.move()
 
     def shoot(self):
 
