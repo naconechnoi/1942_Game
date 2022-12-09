@@ -27,7 +27,6 @@ class App:
         else:
             for obj in self.objects:
                 boomerang = Boomerang()
-                print(obj)
                 obj.update(boomerang)
 
                 if not boomerang.is_add_list_empty():

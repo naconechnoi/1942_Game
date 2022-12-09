@@ -1,6 +1,5 @@
 import pyxel
-import Bullet
-
+from gun.Gun import PlayerGun
 
 class Player:
 
@@ -9,6 +8,7 @@ class Player:
         self.y = y
         self.radius = radius
         self.color = color
+        self.gun = PlayerGun(0.5)
         self.current_posY = 120
 
     def update(self, boomerang):
@@ -20,19 +20,27 @@ class Player:
             self.y -= 1
         if pyxel.btn(pyxel.KEY_DOWN) and self.y + self.radius < 160:
             self.y += 1
-        #if pyxel.btn(pyxel.KEY_SPACE):
         self.current_posY = self.y
-       # print(self.current_posY)
-        boomerang.add_object(self.shoot())
 
-        #return None, False
+        self.shoot(boomerang)
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, self.color)
 
-    def shoot(self):
+    def shoot(self, boomerang):
 
-        x_pos = self.x - self.radius
+        x_pos1 = self.x - self.radius
+        x_pos2 = self.x + self.radius
         y_pos = self.y + self.radius/4
+        bullets = self.gun.shoot()
 
-        return Bullet.Bullet(x_pos, y_pos, 4, "up")
+        if bullets is not None:
+            bullets[0].x = x_pos1
+            bullets[1].x = x_pos2
+
+            for bullet in bullets:
+                bullet.y = y_pos
+                boomerang.add_object(bullet)
+
+        #return Bullet.Bullet(x_pos, y_pos, 4, "up")
+

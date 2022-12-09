@@ -1,10 +1,10 @@
 import random
 from App import App
 from Player import Player
-from RegularEnemy import RegularEnemy
-from Bombardier import Bombardier
-from SuperBombardier import SuperBombardier
-from RedEnemy import RedEnemy
+from enemy.RegularEnemy import RegularEnemy
+from enemy.Bombardier import Bombardier
+from enemy.SuperBombardier import SuperBombardier
+from enemy.RedEnemy import RedEnemy
 
 Enemies = []
 EnemyCount = 0
@@ -13,7 +13,7 @@ y = 0
 app = App()
 obj = Player(60, 120, 5, 5)
 app.add_object(obj)
- 
+
 # добавить нижний цикл в функцию которая будет их размножать
 
 while EnemyCount <= 5: # всего должно быть 20 врагов (5 * 4 ? Каждые 100/50
