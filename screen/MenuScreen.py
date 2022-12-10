@@ -15,4 +15,4 @@ class MenuScreen(Screen):
         pyxel.cls(12)
         pyxel.text(50, 70, "1942", pyxel.frame_count % 12)
         pyxel.rectb(38, 63, 40, 20, pyxel.frame_count % 12)
-        pyxel.text(30, 135, "- PRESS ENTER -", pyxel.frame_count % 3)
+        pyxel.text(30, 135, "- PRESS SPACE -", pyxel.frame_count % 3)
