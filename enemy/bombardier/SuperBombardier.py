@@ -8,7 +8,7 @@ class SuperBombardier(BombardierParent):
         BombardierParent.__init__(self, x, y, 3, 0.5)
 
     def update(self, boomerang):
-        self.y -= self.bombardier_speed
+        self.y += self.bombardier_speed
 
         self.shoot(boomerang)
 
