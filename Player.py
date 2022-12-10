@@ -41,6 +41,3 @@ class Player:
             for bullet in bullets:
                 bullet.y = y_pos
                 boomerang.add_object(bullet)
-
-        #return Bullet.Bullet(x_pos, y_pos, 4, "up")
-

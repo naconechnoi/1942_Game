@@ -10,6 +10,45 @@ class Bullet:
         self.height = height
         self.width = width
 
+    @property
+    def x(self):
+        return self.__x
+
+    @x.setter
+    def x(self, x: float):
+        self.__x = x
+
+    @property
+    def y(self):
+        return self.__y
+
+    @y.setter
+    def y(self, y: float):
+        self.__y = y
+
+    @property
+    def width(self):
+        return self.__width
+
+    @width.setter
+    def width(self, width: float):
+        self.__width = width
+
+    @property
+    def height(self):
+        return self.__height
+
+    @height.setter
+    def height(self, height: float):
+        self.__height = height
+
+    @property
+    def speed(self):
+        return self.__speed
+
+    @speed.setter
+    def speed(self, speed: float):
+        self.__speed = speed
 
     def update(self, boomerang):
         raise Exception

@@ -1,6 +1,7 @@
 import pyxel
 from Boomerang import Boomerang
 
+
 class App:
 
     def __init__(self):
@@ -8,6 +9,7 @@ class App:
         self.width = 160
         pyxel.init(self.height, self.width)
         self.objects = []
+        self.curr_posY = 120
 
     def draw_title(self):
         pyxel.cls(12)
