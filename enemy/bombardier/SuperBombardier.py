@@ -1,11 +1,11 @@
 import pyxel
-from enemy.BombardierParent import Enemy
+from enemy.bombardier.BombardierParent import BombardierParent
 
 
-class SuperBombardier(Enemy):
+class SuperBombardier(BombardierParent):
 
     def __init__(self, x=0, y=0):
-        Enemy.__init__(self, x, y, 3, 0.5)
+        BombardierParent.__init__(self, x, y, 3, 0.5)
 
     def update(self, boomerang):
         self.y -= self.bombardier_speed

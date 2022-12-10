@@ -2,7 +2,7 @@ import pyxel
 from gun.Gun import EnemyGun
 
 
-class Enemy:
+class BombardierParent:
 
     def __init__(self, x: float, y: float, radius: float, bombardier_speed: float):
         self.x = x

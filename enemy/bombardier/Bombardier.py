@@ -1,12 +1,11 @@
 import pyxel
-from gun.Gun import EnemyGun
-from enemy.BombardierParent import Enemy
+from enemy.bombardier.BombardierParent import BombardierParent
 
 
-class Bombardier(Enemy):
+class Bombardier(BombardierParent):
     
     def __init__(self, obj, x=0, y=0):
-        Enemy.__init__(self,x, y, 2, 1.8)
+        BombardierParent.__init__(self, x, y, 2, 1.8)
         self.obj = obj
         self.position_y = 0
         
