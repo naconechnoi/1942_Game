@@ -66,8 +66,7 @@ class PlayerBullet(Bullet):
         if self.y - self.height > 0:
             self.y -= self.speed
         else:
-            boomerang.remove_object(self)
-
+            boomerang.remove_player_bullet(self)
 
 class EnemyBullet(Bullet):
 
@@ -78,4 +77,4 @@ class EnemyBullet(Bullet):
         if self.y - self.height > 0:
             self.y += self.speed
         else:
-            boomerang.remove_object(self)
+            boomerang.remove_enemy_bullet(self)

@@ -15,7 +15,7 @@ y = 0
 
 app = App()
 obj = Player(60, 120, 5, 5)
-app.add_object(obj)
+app.add_player(obj)
 
 
 while RegularCount <= 5:

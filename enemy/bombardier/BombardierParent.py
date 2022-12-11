@@ -9,6 +9,8 @@ class BombardierParent:
         self.y = y
         self.bombardier_speed = bombardier_speed
         self.radius = radius
+        self.width = radius
+        self.height = radius
         self.gun = EnemyGun(2)
 
     @property

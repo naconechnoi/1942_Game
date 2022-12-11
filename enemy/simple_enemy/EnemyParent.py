@@ -78,4 +78,4 @@ class EnemyParent:
             bullets[0].x = x_pos
             bullets[0].y = y_pos
 
-            boomerang.add_object(bullets[0])
+            boomerang.add_enemy_bullet(bullets[0])
