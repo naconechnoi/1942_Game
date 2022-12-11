@@ -1,5 +1,6 @@
 
-class Boomerang:
+
+class ScreenBoomerang:
 
     """Класс погружения и всплытия.
     Используется для того, чтобы работать с обьектами через родительский класс (экран)"""
@@ -25,3 +26,18 @@ class Boomerang:
 
     def get_delete_list(self):
         return self.delete_list
+
+
+class AppBoomerang:
+
+    def __init__(self):
+        self.__screen = None
+
+    @property
+    def screen(self):
+        return self.__screen
+
+    @screen.setter
+    def screen(self, screen):
+        self.__screen = screen
+

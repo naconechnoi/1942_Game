@@ -1,49 +1,25 @@
 import pyxel
-from Boomerang import Boomerang
+from ScreenBoomerang import ScreenBoomerang, AppBoomerang
+from screen.MenuScreen import Screen
 
 
 class App:
 
-    def __init__(self):
-        self.height = 120
-        self.width = 160
-        pyxel.init(self.height, self.width)
-        self.objects = []
-        self.curr_posY = 120
-
-    def draw_title(self):
-        pyxel.cls(12)
-        pyxel.text(50, 70, "1942", pyxel.frame_count % 12)
-        pyxel.rectb(38, 63, 40, 20, pyxel.frame_count % 12)
-        pyxel.text(30, 135, "- PRESS ENTER -", pyxel.frame_count % 3)
-
-    def draw(self):
-        self.draw_title()
-        pyxel.cls(12)
-        for obj in self.objects:
-            obj.draw()
+    def __init__(self, start_screen: Screen):
+        self.curr_screen = start_screen
 
     def update(self):
+        boomerang = AppBoomerang()
+        self.curr_screen.update(boomerang)
+        next_screen = boomerang.screen
+
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
-        else:
-            for obj in self.objects:
-                boomerang = Boomerang()
-                obj.update(boomerang)
+        elif next_screen is not None:
+            self.curr_screen = next_screen
 
-                if not boomerang.is_add_list_empty():
-                    for element in boomerang.get_add_list():
-                        self.add_object(element)
-
-                if not boomerang.is_delete_list_empty():
-                    for element in boomerang.get_delete_list():
-                        self.remove_object(element)
-
-    def remove_object(self, obj):
-        self.objects.remove(obj)
-
-    def add_object(self, obj):
-        self.objects.append(obj)
+    def draw(self):
+        self.curr_screen.draw()
 
     def run(self):
         pyxel.run(self.update, self.draw)
