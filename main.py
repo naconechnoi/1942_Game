@@ -27,38 +27,26 @@ game_screen.next_screen = game_over_screen
 obj = Player(60, 120, 5, 5)
 game_screen.add_object(obj)
 
-game_screen.add_object(RegularEnemy(20, 100))
+while RegularCount <= 5:
+    x = random.randrange(10, 120, 5)
+    y -= 20
+    NewEnemy = RegularEnemy(y, x, y)
+    game_screen.add_object(NewEnemy)
+    RegularCount += 1
+
+while RegularCount > 5 and RedCount < 5:
+    y -= 20
+    NewRed = RedEnemy(y, 20, y)
+    game_screen.add_object(RedEnemy(y, 20, y))
+    RedCount += 1
+
 
 game_screen.add_object(Bombardier(obj, 30, -5))
 game_screen.add_object(SuperBombardier(90, 160))
-game_screen.add_object(RedEnemy(10, 5))
 
 # set up game over screen
 game_over_screen.next_screen = menu_screen
 
 # set up app screen
 app = App(menu_screen)
-app.run()
-
-while RegularCount <= 5:
-    x = random.randrange(10, 120, 5)
-    y -= 20
-    NewEnemy = RegularEnemy(y, x, y)
-    app.add_object(NewEnemy)
-    RegularCount += 1
-
-
-while RegularCount > 5 and RedCount < 5:
-    y -= 20
-    NewRed = RedEnemy(y, 20, y)
-    app.add_object(RedEnemy(y, 20, y))
-    RedCount += 1
-
-
-app.add_object(RegularEnemy(20, 100))
-
-app.add_object(Bombardier(obj, 30, -5))
-app.add_object(SuperBombardier(90, 160))
-app.add_object(RedEnemy(10, 5))
-
 app.run()
