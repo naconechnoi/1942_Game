@@ -40,4 +40,4 @@ class Player:
 
             for bullet in bullets:
                 bullet.y = y_pos
-                boomerang.add_object(bullet)
+                boomerang.add_player_bullet(bullet)
