@@ -3,7 +3,7 @@ from enemy.simple_enemy.EnemyParent import EnemyParent
 
 class RegularEnemy(EnemyParent):
 
-    def __init__(self, middle, x = 0, y = 0):
+    def __init__(self, middle, x=0, y=0):
         EnemyParent.__init__(self, x, y, 6, 6, 1, 1)
         self.counter_y = middle
 

@@ -203,7 +203,7 @@ class GameScreen(Screen):
         self.score = 0
         self.health = 3
         self.delete_enemies()
-        self.create_enemies()
+        #self.create_enemies()
 
     def delete_enemies(self):
         self.objects = []

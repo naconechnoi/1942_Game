@@ -28,18 +28,16 @@ y = 0
 while RegularCount <= 5:
     x = random.randrange(10, 120, 5)
     y -= 20
-    NewEnemy = RegularEnemy(y, x, y)
-    game_screen.add_object(NewEnemy)
+    game_screen.add_object(RegularEnemy(y, x, y))
     RegularCount += 1
 
 while RegularCount > 5 and RedCount < 5:
     y -= 20
-    NewRed = RedEnemy(y, 20, y)
     game_screen.add_object(RedEnemy(y, 20, y))
     RedCount += 1
 
 game_screen.add_object(Bombardier(obj, 30, -5))
-game_screen.add_object(SuperBombardier(90, 160))
+game_screen.add_object(SuperBombardier(90, 170))
 
 # set up game over screen
 game_over_screen.next_screen = menu_screen

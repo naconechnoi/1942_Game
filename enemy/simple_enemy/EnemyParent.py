@@ -11,9 +11,8 @@ class EnemyParent:
         self.width = width
         self.color = color
         self.enemy_speed = enemy_speed
-        #self.is_alive = True
         self.counter_y = 0
-        self.gun = EnemyGun(2)
+        self.gun = EnemyGun(1)
 
     @property
     def x(self):
@@ -74,7 +73,9 @@ class EnemyParent:
         y_pos = self.y - (self.height + self.width) / 72
 
         bullets = self.gun.shoot()
+
         if bullets is not None:
+
             bullets[0].x = x_pos
             bullets[0].y = y_pos
 

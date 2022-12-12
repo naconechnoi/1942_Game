@@ -11,7 +11,7 @@ class BombardierParent:
         self.radius = radius
         self.width = 6
         self.height = 6
-        self.gun = EnemyGun(2)
+        self.gun = EnemyGun(1)
 
     @property
     def x(self):
@@ -55,6 +55,7 @@ class BombardierParent:
 
         x_pos = self.x - self.radius
         y_pos = self.y + self.radius / 4
+        
         bullets = self.gun.shoot()
 
         if bullets is not None:
@@ -62,4 +63,4 @@ class BombardierParent:
             bullets[0].x = x_pos
             bullets[0].y = y_pos
 
-            boomerang.add_object(bullets[0])
+            boomerang.add_enemy_bullet(bullets[0])

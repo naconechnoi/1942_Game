@@ -9,9 +9,9 @@ class RedEnemy(EnemyParent):
         self.t = 0.1
         self.counter_y = middle
 
-
     def update(self, boomerang):
         if self.counter_y <= 30:
+
             self.y += self.enemy_speed
 
         if 30 < self.counter_y < 310:
@@ -26,3 +26,4 @@ class RedEnemy(EnemyParent):
             self.x -= self.enemy_speed
 
         self.counter_y += self.enemy_speed
+

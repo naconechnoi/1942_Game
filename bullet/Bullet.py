@@ -68,6 +68,7 @@ class PlayerBullet(Bullet):
         else:
             boomerang.remove_player_bullet(self)
 
+
 class EnemyBullet(Bullet):
 
     def __init__(self, x=0, y=0):
@@ -78,3 +79,4 @@ class EnemyBullet(Bullet):
             self.y += self.speed
         else:
             boomerang.remove_enemy_bullet(self)
+

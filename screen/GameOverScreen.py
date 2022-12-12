@@ -20,3 +20,4 @@ class GameOverScreen(Screen):
 
     def set_score(self, score):
         self.score = score
+
