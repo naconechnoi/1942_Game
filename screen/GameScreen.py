@@ -25,7 +25,6 @@ class GameScreen(Screen):
         self.score = 0
         self.health = 3
         self.is_player_dead = False
-        self.create_enemies()
 
     def update(self, boomerang):
 
@@ -210,20 +209,3 @@ class GameScreen(Screen):
         self.objects = []
         self.enemy_bullets = []
         self.player_bullets = []
-
-    def create_enemies(self):
-        RegularCount = 0
-        RedCount = 0
-        y = 0
-        while RegularCount <= 5:
-            x = random.randrange(10, 120, 5)
-            y -= 20
-            NewEnemy = RegularEnemy(y, x, y)
-            self.add_object(NewEnemy)
-            RegularCount += 1
-
-        while RegularCount > 5 and RedCount < 5:
-            y -= 20
-            NewRed = RedEnemy(y, 20, y)
-            self.add_object(RedEnemy(y, 20, y))
-            RedCount += 1

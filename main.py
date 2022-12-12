@@ -10,10 +10,6 @@ from screen.GameScreen import GameScreen
 from screen.MenuScreen import MenuScreen
 from screen.GameOverScreen import GameOverScreen
 
-
-
-
-
 menu_screen = MenuScreen()
 game_screen = GameScreen()
 game_over_screen = GameOverScreen()
@@ -26,9 +22,21 @@ game_screen.next_screen = game_over_screen
 obj = Player(60, 120, 5, 5)
 game_screen.player = obj
 
+RegularCount, RedCount = 0, 0
+y = 0
 
+while RegularCount <= 5:
+    x = random.randrange(10, 120, 5)
+    y -= 20
+    NewEnemy = RegularEnemy(y, x, y)
+    game_screen.add_object(NewEnemy)
+    RegularCount += 1
 
-
+while RegularCount > 5 and RedCount < 5:
+    y -= 20
+    NewRed = RedEnemy(y, 20, y)
+    game_screen.add_object(RedEnemy(y, 20, y))
+    RedCount += 1
 
 game_screen.add_object(Bombardier(obj, 30, -5))
 game_screen.add_object(SuperBombardier(90, 160))
