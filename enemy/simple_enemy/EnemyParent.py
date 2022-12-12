@@ -13,7 +13,7 @@ class EnemyParent:
         self.enemy_speed = enemy_speed
         #self.is_alive = True
         self.counter_y = 0
-        self.gun = EnemyGun(1)
+        self.gun = EnemyGun(2)
 
     @property
     def x(self):
