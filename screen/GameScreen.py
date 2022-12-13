@@ -12,7 +12,7 @@ from enemy.simple_enemy.RegularEnemy import RegularEnemy
 
 
 from screen.Screen import Screen
-
+countEnemy = 0
 
 class GameScreen(Screen):
 
@@ -39,19 +39,21 @@ class GameScreen(Screen):
         RegularCount, RedCount = 0, 0
         y = 0
         x_reg = 40
-        stepCount = 0
+
         i = 0
         list_said = ['left', 'right']
 
-        while i <= 20:
+
+        for i in range(21):
 
             if i % 2 == 0:
-                while RegularCount <= 3:
+                while RegularCount <= 4:
                     x = random.randrange(10, 120, 5)
                     y -= 20
                     self.add_object(RegularEnemy(y, x, y))
                     RegularCount += 1
                 RegularCount = 0
+
 
             if i % 9 == 0:
 
@@ -60,15 +62,17 @@ class GameScreen(Screen):
                     y -= 20
                     self.add_object(RedEnemy(y, said, x_reg, y))
                     RedCount += 1
+
                 RedCount = 0
                 x_reg += 10
-            i += 1
 
 
+
+        self.add_object(SuperBombardier(90, 170))
 
 
         self.add_object(Bombardier(obj, 30, -5))
-        self.add_object(SuperBombardier(90, 170))
+
 
     def update(self, boomerang):
 

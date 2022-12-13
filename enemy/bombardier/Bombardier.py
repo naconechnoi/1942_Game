@@ -8,9 +8,13 @@ class Bombardier(BombardierParent):
         BombardierParent.__init__(self, x, y, 2, 1.8)
         self.obj = obj
         self.position_y = 0
+        self.Flag = False
         
     def update(self, boomerang):
         if self.obj.current_posY < 100:
+            self.Flag = True
+
+        if self.Flag == True:
             if self.position_y <= 70:
 
                 self.y += self.bombardier_speed
@@ -21,11 +25,11 @@ class Bombardier(BombardierParent):
                 """if self.y > pyxel.height - 1:
                     self.is_alive = False"""
             else:
-                if 70 < self.position_y <= 100:
-                    self.x += self.bombardier_speed
-                elif 100 < self.position_y <= 130:
-                    self.y -= self.bombardier_speed
+                if 70 < self.position_y <= 130:
+                    self.x += 1*(self.bombardier_speed)
                 elif 130 < self.position_y <= 160:
+                    self.y -= self.bombardier_speed
+                elif 160 < self.position_y <= 190:
                     self.x -= self.bombardier_speed
                 else:
                     self.y -= self.bombardier_speed
