@@ -25,16 +25,26 @@ game_screen.player = obj
 RegularCount, RedCount = 0, 0
 y = 0
 
-while RegularCount <= 5:
-    x = random.randrange(10, 120, 5)
-    y -= 20
-    game_screen.add_object(RegularEnemy(y, x, y))
-    RegularCount += 1
+for i in range(1, 21):
 
-while RegularCount > 5 and RedCount < 5:
-    y -= 20
-    game_screen.add_object(RedEnemy(y, 20, y))
-    RedCount += 1
+    if i % 2 == 0:
+        while RegularCount <= 3:
+            x = random.randrange(10, 120, 5)
+            y -= 20
+            game_screen.add_object(RegularEnemy(y, x, y))
+            RegularCount += 1
+        RegularCount = 0
+        start = time.time()
+
+    if i % 9 == 0:
+        while RedCount < 5:
+            x = random.randrange(20, 50, 10)
+            y -= 20
+            game_screen.add_object(RedEnemy(y, 20, y))
+            RedCount += 1
+        RedCount = 0
+
+
 
 game_screen.add_object(Bombardier(obj, 30, -5))
 game_screen.add_object(SuperBombardier(90, 170))
