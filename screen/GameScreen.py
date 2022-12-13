@@ -65,11 +65,9 @@ class GameScreen(Screen):
 
         if self.is_game_over():
             self.is_player_dead = False
-            #self.next_screen.set_score(self.score)
             tmp_screen = self.next_screen.get_instance(self.next_screen.next_screen)
             tmp_screen.set_score(self.score)
             boomerang.screen = tmp_screen
-            #self.game_update()
         else:
             if self.player is not None:
                 boomerang = ScreenBoomerang()
