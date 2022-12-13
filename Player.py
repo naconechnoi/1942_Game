@@ -1,6 +1,6 @@
 import pyxel
 from gun.Gun import PlayerGun
-
+import math
 
 class Player:
 
@@ -11,6 +11,7 @@ class Player:
         self.color = color
         self.gun = PlayerGun(0.5)
         self.current_posY = 120
+        self.t = 0.1
 
     def update(self, boomerang):
         if pyxel.btn(pyxel.KEY_RIGHT) and self.x + self.radius < 120:
@@ -21,6 +22,11 @@ class Player:
             self.y -= 1
         if pyxel.btn(pyxel.KEY_DOWN) and self.y + self.radius < 160:
             self.y += 1
+        if pyxel.btn(pyxel.KEY_Z):
+            for i in range(10):
+                self.x += 1 * math.sin(self.t)
+                self.y += 1 * math.cos(self.t)
+                self.t += 0.1
         self.current_posY = self.y
 
         self.shoot(boomerang)

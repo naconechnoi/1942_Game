@@ -4,10 +4,10 @@ from enemy.bombardier.BombardierParent import BombardierParent
 
 class Bombardier(BombardierParent):
     
-    def __init__(self, obj, x=0, y=0):
+    def __init__(self, obj, middle, y=0, x=0):
         BombardierParent.__init__(self, x, y, 2, 1.8)
         self.obj = obj
-        self.position_y = 0
+        self.position_y = middle
         self.Flag = False
         
     def update(self, boomerang):
@@ -26,7 +26,8 @@ class Bombardier(BombardierParent):
                     self.is_alive = False"""
             else:
                 if 70 < self.position_y <= 130:
-                    self.x += 1*(self.bombardier_speed)
+                    self.x += self.bombardier_speed
+
                 elif 130 < self.position_y <= 160:
                     self.y -= self.bombardier_speed
                 elif 160 < self.position_y <= 190:
@@ -38,6 +39,7 @@ class Bombardier(BombardierParent):
                     self.is_alive = False"""
             self.position_y += self.bombardier_speed
             self.shoot(boomerang)
+
 
     def draw(self):
         pyxel.circ(self.x, self.y, self.radius, 9)

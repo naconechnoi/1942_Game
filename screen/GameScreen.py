@@ -43,7 +43,7 @@ class GameScreen(Screen):
         i = 0
         list_said = ['left', 'right']
 
-
+        start = time.time()
         for i in range(21):
 
             if i % 2 == 0:
@@ -67,11 +67,10 @@ class GameScreen(Screen):
                 x_reg += 10
 
 
+        self.add_object(SuperBombardier(60, -400))
 
-        self.add_object(SuperBombardier(90, 170))
-
-
-        self.add_object(Bombardier(obj, 30, -5))
+        self.add_object(Bombardier(obj, -350, -350, 30))
+        self.add_object(Bombardier(obj, -5, -5, 30))
 
 
     def update(self, boomerang):
@@ -130,8 +129,10 @@ class GameScreen(Screen):
                             and enemy.y + enemy.height > bullet.y
                             and bullet.y + bullet.height > enemy.y
                     ):
-                        self.remove_object(enemy)
-                        self.score += 10
+
+                                self.remove_object(enemy)
+                                self.score += 10
+
 
             # the logic of hitting player
 
@@ -145,6 +146,7 @@ class GameScreen(Screen):
                 ):
                     self.remove_enemy_bullet(enemy_bullet)
                     self.health -= 1
+
                 if self.health <= 0:
                     self.is_player_dead = True
                     print("game over, score: " + str(self.score))
