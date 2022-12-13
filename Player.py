@@ -1,6 +1,7 @@
 import pyxel
 from gun.Gun import PlayerGun
 
+
 class Player:
 
     def __init__(self, x: float, y: float, radius: float, color: int):

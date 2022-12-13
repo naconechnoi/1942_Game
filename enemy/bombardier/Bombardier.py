@@ -15,11 +15,12 @@ class Bombardier(BombardierParent):
 
                 self.y += self.bombardier_speed
 
-                print(pyxel.height)
+                print(self.obj.current_posY)
+                print(self.position_y)
                 print(self.y)
                 """if self.y > pyxel.height - 1:
                     self.is_alive = False"""
-            elif self.position_y:
+            else:
                 if 70 < self.position_y <= 100:
                     self.x += self.bombardier_speed
                 elif 100 < self.position_y <= 130:
@@ -32,7 +33,6 @@ class Bombardier(BombardierParent):
                 """if self.y > pyxel.height - 1:
                     self.is_alive = False"""
             self.position_y += self.bombardier_speed
-
             self.shoot(boomerang)
 
     def draw(self):

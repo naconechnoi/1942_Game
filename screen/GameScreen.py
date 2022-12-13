@@ -1,10 +1,16 @@
 import random
+import time
 
 import pyxel
 
+from Player import Player
 from ScreenBoomerang import ScreenBoomerang
+from enemy.bombardier.Bombardier import Bombardier
+from enemy.bombardier.SuperBombardier import SuperBombardier
 from enemy.simple_enemy.RedEnemy import RedEnemy
 from enemy.simple_enemy.RegularEnemy import RegularEnemy
+
+
 from screen.Screen import Screen
 
 
@@ -14,7 +20,6 @@ class GameScreen(Screen):
         Screen.__init__(self)
         self.height = 120
         self.width = 160
-        pyxel.init(self.height, self.width)
         self.objects = []
         self.curr_posY = 120
         self.player = None
@@ -25,11 +30,46 @@ class GameScreen(Screen):
         self.score = 0
         self.health = 3
         self.is_player_dead = False
+        self.__set_up()
+
+    def __set_up(self):
+        obj = Player(60, 120, 5, 5)
+        self.player = obj
+
+        RegularCount, RedCount = 0, 0
+        y = 0
+
+        for i in range(1, 21):
+
+            if i % 2 == 0:
+                while RegularCount <= 3:
+                    x = random.randrange(10, 120, 5)
+                    y -= 20
+                    self.add_object(RegularEnemy(y, x, y))
+                    RegularCount += 1
+                RegularCount = 0
+                start = time.time()
+
+            if i % 9 == 0:
+                while RedCount < 5:
+                    x = random.randrange(20, 50, 10)
+                    y -= 20
+                    self.add_object(RedEnemy(y, 20, y))
+                    RedCount += 1
+                RedCount = 0
+
+        self.add_object(Bombardier(obj, 30, -5))
+        self.add_object(SuperBombardier(90, 170))
 
     def update(self, boomerang):
 
         if self.is_game_over():
-            boomerang.screen = self.next_screen
+            self.is_player_dead = False
+            #self.next_screen.set_score(self.score)
+            tmp_screen = self.next_screen.get_instance(self.next_screen.next_screen)
+            tmp_screen.set_score(self.score)
+            boomerang.screen = tmp_screen
+            #self.game_update()
         else:
             if self.player is not None:
                 boomerang = ScreenBoomerang()
@@ -191,12 +231,7 @@ class GameScreen(Screen):
 
     # the logic of ending game
     def is_game_over(self):
-        if pyxel.btnp(pyxel.KEY_EQUALS) or self.is_player_dead:
-            self.is_player_dead = False
-            self.next_screen.set_score(self.score)
-            self.game_update()
-            return True
-        return False
+        return pyxel.btnp(pyxel.KEY_EQUALS) or self.is_player_dead
 
     # you can add the logic of refreshing a game screen to this method
     def game_update(self):
@@ -209,3 +244,8 @@ class GameScreen(Screen):
         self.objects = []
         self.enemy_bullets = []
         self.player_bullets = []
+
+    def get_instance(self, next_screen):
+        game_screen = GameScreen()
+        game_screen.next_screen = next_screen
+        return game_screen

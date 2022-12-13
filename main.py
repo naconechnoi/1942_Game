@@ -19,10 +19,10 @@ menu_screen.next_screen = game_screen
 
 # set up game screen
 game_screen.next_screen = game_over_screen
-obj = Player(60, 120, 5, 5)
-game_screen.player = obj
+"""obj = Player(60, 120, 5, 5)
+game_screen.player = obj"""
 
-RegularCount, RedCount = 0, 0
+"""RegularCount, RedCount = 0, 0
 y = 0
 
 for i in range(1, 21):
@@ -47,11 +47,11 @@ for i in range(1, 21):
 
 
 game_screen.add_object(Bombardier(obj, 30, -5))
-game_screen.add_object(SuperBombardier(90, 170))
+game_screen.add_object(SuperBombardier(90, 170))"""
 
 # set up game over screen
 game_over_screen.next_screen = menu_screen
 
 # set up app screen
-app = App(menu_screen)
+app = App(menu_screen, 120, 160)
 app.run()

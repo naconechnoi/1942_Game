@@ -1,6 +1,6 @@
 
 class Screen:
-
+    """This is an abstract class"""
     def __init__(self):
         self.next_screen = None
 
@@ -11,6 +11,9 @@ class Screen:
     @next_screen.setter
     def next_screen(self, next_screen):
         self.__next_screen = next_screen
+
+    def get_instance(self, next_screen):
+        raise Exception
 
     def update(self, boomerang):
         raise Exception

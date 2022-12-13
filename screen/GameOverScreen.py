@@ -4,12 +4,14 @@ from screen.Screen import Screen
 
 
 class GameOverScreen(Screen):
-    def __int__(self):
+
+    def __init__(self):
+        Screen.__init__(self)
         self.score = 0
 
     def update(self, boomerang):
         if pyxel.btn(pyxel.KEY_MINUS):
-            boomerang.screen = self.next_screen
+            boomerang.screen = self.next_screen.get_instance(self.next_screen.next_screen)
 
     def draw(self):
         pyxel.cls(12)
@@ -21,3 +23,7 @@ class GameOverScreen(Screen):
     def set_score(self, score):
         self.score = score
 
+    def get_instance(self, next_screen):
+        game_over_screen = GameOverScreen()
+        game_over_screen.next_screen = next_screen
+        return game_over_screen

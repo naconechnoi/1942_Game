@@ -71,6 +71,7 @@ class ScreenBoomerang:
     def is_enemy_bullet_delete_empty(self):
         return len(self.enemy_bullets_delete) == 0
 
+
 class AppBoomerang:
 
     def __init__(self):

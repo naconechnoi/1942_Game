@@ -79,4 +79,3 @@ class EnemyBullet(Bullet):
             self.y += self.speed
         else:
             boomerang.remove_enemy_bullet(self)
-

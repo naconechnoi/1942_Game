@@ -1,12 +1,17 @@
 import pyxel
-from ScreenBoomerang import ScreenBoomerang, AppBoomerang
-from screen.MenuScreen import Screen
+from ScreenBoomerang import AppBoomerang
+
+from screen.MenuScreen import MenuScreen
+
 
 
 class App:
 
-    def __init__(self, start_screen: Screen):
-        self.curr_screen = start_screen
+    def __init__(self, curr_screen, height, width):
+        self.height = height
+        self.width = width
+        pyxel.init(self.height, self.width)
+        self.curr_screen = curr_screen
 
     def update(self):
         boomerang = AppBoomerang()
