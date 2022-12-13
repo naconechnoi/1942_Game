@@ -15,9 +15,9 @@ class Bombardier(BombardierParent):
 
                 self.y += self.bombardier_speed
 
-                print(self.obj.current_posY)
-                print(self.position_y)
-                print(self.y)
+                #print(self.obj.current_posY)
+                #print(self.position_y)
+                #print(self.y)
                 """if self.y > pyxel.height - 1:
                     self.is_alive = False"""
             else:

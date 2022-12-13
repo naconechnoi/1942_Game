@@ -38,8 +38,12 @@ class GameScreen(Screen):
 
         RegularCount, RedCount = 0, 0
         y = 0
+        x_reg = 40
+        stepCount = 0
+        i = 0
+        list_said = ['left', 'right']
 
-        for i in range(1, 21):
+        while i <= 20:
 
             if i % 2 == 0:
                 while RegularCount <= 3:
@@ -48,15 +52,20 @@ class GameScreen(Screen):
                     self.add_object(RegularEnemy(y, x, y))
                     RegularCount += 1
                 RegularCount = 0
-                start = time.time()
 
             if i % 9 == 0:
+
+                said = list_said[random.randint(0, 1)]
                 while RedCount < 5:
-                    x = random.randrange(20, 50, 10)
                     y -= 20
-                    self.add_object(RedEnemy(y, 20, y))
+                    self.add_object(RedEnemy(y, said, x_reg, y))
                     RedCount += 1
                 RedCount = 0
+                x_reg += 10
+            i += 1
+
+
+
 
         self.add_object(Bombardier(obj, 30, -5))
         self.add_object(SuperBombardier(90, 170))
