@@ -1,12 +1,9 @@
 import pyxel
 from ScreenBoomerang import AppBoomerang
 
-from screen.MenuScreen import MenuScreen
-
-
 
 class App:
-
+    """This class is used to store the whole app"""
     def __init__(self, curr_screen, height, width):
         self.height = height
         self.width = width
@@ -14,6 +11,7 @@ class App:
         self.curr_screen = curr_screen
 
     def update(self):
+        """This method updates screens of a game"""
         boomerang = AppBoomerang()
         self.curr_screen.update(boomerang)
         next_screen = boomerang.screen
@@ -24,6 +22,7 @@ class App:
             self.curr_screen = next_screen
 
     def draw(self):
+        """This method draws current screen"""
         self.curr_screen.draw()
 
     def run(self):

@@ -1,10 +1,7 @@
 
-
 class ScreenBoomerang:
-
-    """Класс погружения и всплытия.
-    Используется для того, чтобы работать с обьектами через родительский класс (экран)"""
-
+    """"This class is used for transmission of information
+     between objects on the screen and the screen."""
     def __init__(self):
         self.add_list = []
         self.delete_list = []
@@ -73,7 +70,8 @@ class ScreenBoomerang:
 
 
 class AppBoomerang:
-
+    """This class is used for transmission of information
+     between screens and the game."""
     def __init__(self):
         self.__screen = None
 

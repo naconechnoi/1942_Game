@@ -1,6 +1,7 @@
 
 class Screen:
-    """This is an abstract class"""
+    """This is an abstract class for the three screens:
+    Menu, Game and Game Over"""
     def __init__(self):
         self.next_screen = None
 
