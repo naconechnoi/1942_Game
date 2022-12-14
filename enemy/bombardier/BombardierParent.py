@@ -1,9 +1,8 @@
-import pyxel
 from gun.Gun import EnemyGun
 
 
 class BombardierParent:
-
+    """This is a parent class for Bombardiers"""
     def __init__(self, x: float, y: float, radius: float, bombardier_speed: float):
         self.x = x
         self.y = y
@@ -11,7 +10,8 @@ class BombardierParent:
         self.radius = radius
         self.width = 6
         self.height = 6
-        self.gun = EnemyGun(1)
+        # defined time gap between bullets
+        self.gun = EnemyGun(1.5)
 
     @property
     def x(self):
@@ -52,10 +52,11 @@ class BombardierParent:
         raise Exception
 
     def shoot(self, boomerang):
-
+        """This method describes how all Bombardiers shoot"""
         x_pos = self.x - self.radius
         y_pos = self.y + self.radius / 4
-        
+
+        # generate bullets
         bullets = self.gun.shoot()
 
         if bullets is not None:
@@ -63,4 +64,5 @@ class BombardierParent:
             bullets[0].x = x_pos
             bullets[0].y = y_pos
 
+            # adding bullets in the special list
             boomerang.add_enemy_bullet(bullets[0])

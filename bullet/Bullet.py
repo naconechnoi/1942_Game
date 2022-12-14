@@ -2,7 +2,7 @@ import pyxel
 
 
 class Bullet:
-
+    """This is a class that describes a bullet"""
     def __init__(self, x: float, y: float, width: float, height: float, speed: float):
         self.x = x
         self.y = y
@@ -58,7 +58,7 @@ class Bullet:
 
 
 class PlayerBullet(Bullet):
-
+    """This is a class that describes Players bullet"""
     def __init__(self, x=0, y=0):
         Bullet.__init__(self, x, y, 3, 3, 3)
 
@@ -70,11 +70,13 @@ class PlayerBullet(Bullet):
 
 
 class EnemyBullet(Bullet):
-
+    """This is a class that describes Enemies bullet"""
     def __init__(self, x=0, y=0):
         Bullet.__init__(self, x, y, 2, 2, 2)
 
     def update(self, boomerang):
+        """This method updates position of a bullet
+        and adds it to a remove list when it gets out of a screen"""
         if self.y - self.height > 0:
             self.y += self.speed
         else:

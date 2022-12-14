@@ -3,7 +3,7 @@ from gun.Gun import EnemyGun
 
 
 class EnemyParent:
-
+    """This is a parent class for Simple Enemies"""
     def __init__(self, x: float, y: float, height: float, width: float, color: int, enemy_speed: float):
         self.x = x
         self.y = y
@@ -12,6 +12,7 @@ class EnemyParent:
         self.color = color
         self.enemy_speed = enemy_speed
         self.counter_y = 0
+        # defined time gap between bullets
         self.gun = EnemyGun(1)
 
     @property
@@ -69,9 +70,11 @@ class EnemyParent:
         pyxel.rect(self.x, self.y, self.width, self.height, self.color)
 
     def shoot(self, boomerang):
+        """This method describes how all of the enemies shoot"""
         x_pos = self.x + (self.height + self.width) / 6
         y_pos = self.y - (self.height + self.width) / 72
 
+        # generates bullets
         bullets = self.gun.shoot()
 
         if bullets is not None:
@@ -79,4 +82,5 @@ class EnemyParent:
             bullets[0].x = x_pos
             bullets[0].y = y_pos
 
+            # adding bullets in the special list
             boomerang.add_enemy_bullet(bullets[0])
