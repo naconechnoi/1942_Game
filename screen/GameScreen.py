@@ -48,10 +48,11 @@ class GameScreen(Screen):
         i = 0
         list_said = ['left', 'right']
 
-        start = time.time()
+        # create a general cycle for regular enemies and red enemies
         for i in range(21):
 
             if i % 2 == 0:
+                # For every second iteration of the loop, add 5 regular enemies
                 while RegularCount <= 4:
                     x = random.randrange(10, 120, 5)
                     y -= 20
@@ -60,6 +61,7 @@ class GameScreen(Screen):
                 RegularCount = 0
 
             if i % 9 == 0:
+                # For every ninth iteration of the loop, we add 5 red enemies
                 said = list_said[random.randint(0, 1)]
                 while RedCount < 5:
                     y -= 20
