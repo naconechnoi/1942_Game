@@ -14,12 +14,12 @@ from enemy.simple_enemy.RegularEnemy import RegularEnemy
 from screen.Screen import Screen
 countEnemy = 0
 
-class GameScreen(Screen):
 
+class GameScreen(Screen):
+    """This is a class that describes all the main game process
+    (and a Game Screen)"""
     def __init__(self):
         Screen.__init__(self)
-        self.height = 120
-        self.width = 160
         self.objects = []
         self.curr_posY = 120
         self.player = None
@@ -27,12 +27,17 @@ class GameScreen(Screen):
         self.player_bullets = []
         self.enemy_bullets = []
         self.curr_posY = 120
+        # attributes for the score
         self.score = 0
         self.health = 3
         self.is_player_dead = False
+        # setting up objects on a screen
         self.__set_up()
 
     def __set_up(self):
+        """This method sets up all of the objects on a screen"""
+
+        # creating a player
         obj = Player(60, 120, 5, 5)
         self.player = obj
 
@@ -54,9 +59,7 @@ class GameScreen(Screen):
                     RegularCount += 1
                 RegularCount = 0
 
-
             if i % 9 == 0:
-
                 said = list_said[random.randint(0, 1)]
                 while RedCount < 5:
                     y -= 20
@@ -66,15 +69,15 @@ class GameScreen(Screen):
                 RedCount = 0
                 x_reg += 10
 
-
+        # super bombardier object added
         self.add_object(SuperBombardier(60, -400))
 
+        # simple bombardier objects added
         self.add_object(Bombardier(obj, -350, -350, 30))
         self.add_object(Bombardier(obj, -5, -5, 30))
 
-
     def update(self, boomerang):
-
+        """This method updates all the movements on a screen"""
         if self.is_game_over():
             self.is_player_dead = False
             tmp_screen = self.next_screen.get_instance(self.next_screen.next_screen)
@@ -119,7 +122,7 @@ class GameScreen(Screen):
                     for element in boomerang.get_enemy_bullets_delete():
                         self.remove_enemy_bullet(element)
 
-            # the logic of hitting enemy
+            # logic of hitting enemy
 
             for bullet in self.player_bullets:
                 for enemy in self.objects:
@@ -134,7 +137,7 @@ class GameScreen(Screen):
                                 self.score += 10
 
 
-            # the logic of hitting player
+            # logic of hitting a player
 
             for enemy_bullet in self.enemy_bullets:
                 player = self.player
@@ -219,7 +222,7 @@ class GameScreen(Screen):
     def add_object(self, obj):
         self.objects.append(obj)
 
-    # the logic of adding
+    # logic of adding enemies/bullets
 
     def add_enemy(self, obj):
         self.enemies.append(obj)
@@ -242,23 +245,26 @@ class GameScreen(Screen):
     def run(self):
         pyxel.run(self.update, self.draw)
 
-    # the logic of ending game
+    # logic of ending game
+
     def is_game_over(self):
         return pyxel.btnp(pyxel.KEY_EQUALS) or self.is_player_dead
 
-    # you can add the logic of refreshing a game screen to this method
+    # logic of refreshing a game screen can be added
     def game_update(self):
+        """This method updates a game after its end"""
         self.score = 0
         self.health = 3
         self.delete_enemies()
-        #self.create_enemies()
 
     def delete_enemies(self):
+        """This method deletes enemies"""
         self.objects = []
         self.enemy_bullets = []
         self.player_bullets = []
 
     def get_instance(self, next_screen):
+        """This method sets next screen and return the current one"""
         game_screen = GameScreen()
         game_screen.next_screen = next_screen
         return game_screen
